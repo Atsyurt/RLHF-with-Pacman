@@ -14,10 +14,10 @@ import random
 class PacmanEnv(gym.Env):
     def __init__(self,grid_size,pellets,pacman_x, pacman_y):
         super().__init__()
-        self.wall_collision_penalty=-5
-        self.progress_reward=-1
-        self.eat_pellet_reward=20
-        self.win_reward=30
+        self.wall_collision_penalty=-2
+        self.progress_reward=-2
+        self.eat_pellet_reward=10
+        self.win_reward=10
 
         # Define the grid size and pellet positions
         self.grid_size = grid_size
@@ -142,10 +142,14 @@ class PacmanEnv(gym.Env):
         self.score = 0
         
         self.pellets = self.initial_pellets.copy()
-        if random.randint(1,5) < 2:
+        if random.randint(1,5) < 3:
             self.pellets[0]=(random.randint(1,5)-1,random.randint(1,5)-1)
             #self.pellets[0]=self.pellets[0].copy()
-            print("lets change pellet super fun and easy peasy")
+            print("lets change pellet pos its super fun and easy peasy")
+        if random.randint(1,5) > 4:
+                self.pellets[1]=(random.randint(1,5)-1,random.randint(1,5)-1)
+                #self.pellets[0]=self.pellets[0].copy()
+                print("lets change pellet pos its super fun and easy peasy")
         self.collisions=0
         self.way_list=[]
         return self._get_observation()

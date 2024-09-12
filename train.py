@@ -49,7 +49,7 @@ total_loss=None
 
 ispretrained=True
 if ispretrained:
-    checkpoint = torch.load('checkpoint.pth')
+    checkpoint = torch.load('checkpoint24node.pth')
     model.load_state_dict(checkpoint['model_state_dict'])
     optimizer.load_state_dict(checkpoint['optimizer_state_dict'])
 
@@ -101,7 +101,7 @@ for episode in range(60000):
         step=step+1
 
     print(f"Episode {episode+1}: Total reward = {reward}, Pellet number = {len(env.pellets)}, Step number = {step} collisions= {env.collisions} ssc={env.super_succes_count}")
-    if env.super_succes_count>1000:
+    if env.super_succes_count>20000:
         print("i should stop the training kupo i was doing great.")
         print("",env.way_list)
         break
@@ -129,4 +129,4 @@ for episode in range(60000):
 torch.save({
     'model_state_dict': model.state_dict(),
     'optimizer_state_dict': optimizer.state_dict(),
-}, 'checkpoint.pth')
+}, 'checkpoint24node.pth')
